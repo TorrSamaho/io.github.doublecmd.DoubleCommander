@@ -1,18 +1,19 @@
-app-id: app.cantara.Cantara
+app-id: org.doublecmd.Doublecmd
 runtime: org.kde.Platform
 runtime-version: '5.15-22.08'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.freepascal
-command: cantara
+command: doublecmd
 finish-args:
   - --share=ipc
-  - --socket=fallback-x11
+  - --share=network
+  - --socket=x11
   - --socket=wayland
   - --filesystem=home
+  - --filesystem=/run/media
+  - --nofilesystem=/proc/self/mounts
   - --device=dri
-#icon: app.cantara.Cantara.png
-#rename-desktop-file: cantara.desktop
 modules:
   - name: qt5pas
     buildsystem: qmake
@@ -23,22 +24,30 @@ modules:
       - type: shell
         commands:
           - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
-  - name: cantara
+  - name: doublecmd
     sources:
       - type: git
-        url: https://github.com/reckel-jm/cantara.git
-        tag: v2.5.0
-        commit: ca8d01107018354f316c392e60ca5d7dcdb71561
+        url: https://github.com/doublecmd/doublecmd.git
+        tag: v1.1.2
+        commit: 1c46399683895f6e513aeca80145c96f3bdeba05
+        # This is necessary for "git2revisioninc.cmd" to work, i.e., to determine "Revision" and "Commit".
+        disable-shallow-clone: true
+      - type: file
+        path: org.doublecmd.Doublecmd.metainfo.xml
     buildsystem: simple
     build-commands:
+      # The install script needs to be patched, so that we don't install in "usr".
+      # https://github.com/hughsie/appstream-glib/issues/271
+      - sed -e "s|DC_INSTALL_PREFIX/usr|DC_INSTALL_PREFIX|g" install/linux/install.sh > install/linux/install-patched.sh
+      - chmod +x install/linux/install-patched.sh
       - |
         . /usr/lib/sdk/freepascal/enable.sh
-        cd src
-        lazbuild --lazarusdir="$LAZARUS_DIR" -B --bm="ReleaseConfined" --ws="qt5" Cantara.lpi
-        cd ..
-      - install -D src/cantara -t $FLATPAK_DEST/bin
-      - cp -r src/languages $FLATPAK_DEST/bin/
-      - install -D icons/64.png $FLATPAK_DEST/share/icons/hicolor/64x64/apps/app.cantara.Cantara.png
-      - install -D icons/128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/app.cantara.Cantara.png
-      - install -D app.cantara.Cantara.desktop -t $FLATPAK_DEST/share/applications
-      - install -D app.cantara.Cantara.metainfo.xml -t $FLATPAK_DEST/share/metainfo
+        lcl=qt5 ./build.sh release
+        install/linux/install-patched.sh --install-prefix ${FLATPAK_DEST}
+    post-install:
+      - install -Dm644 pixmaps/mainicon/alt/dcfinal.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 pixmaps/mainicon/alt/128px-dcfinal.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.png
+      - install -Dm644 pixmaps/mainicon/alt/256px-dcfinal.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/${FLATPAK_ID}.png
+      - sed -e "s|Icon=doublecmd|Icon=${FLATPAK_ID}|g" install/linux/doublecmd.desktop > ${FLATPAK_ID}.desktop
+      - install -Dm644 ${FLATPAK_ID}.desktop -t ${FLATPAK_DEST}/share/applications
+      - install -Dm644 ${FLATPAK_ID}.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo

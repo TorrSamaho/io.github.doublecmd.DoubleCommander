@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.doublecmd.Doublecmd</id>
+  
+  <name>Double Commander</name>
+  <developer_name>Double Commander Team</developer_name>
+  <summary>Double Commander is a cross platform open source file manager with two panels side by side.</summary>
+  
+  <metadata_license>CC-BY-SA-4.0</metadata_license>
+  <project_license>GPL-2.0-only</project_license>
+  
+  <description>
+    <p>
+      Double Commander is a free cross platform open source file manager with two panels side by side. It is inspired by Total Commander and features new ideas.
+    </p>
+  </description>
+
+  <categories>
+    <category>Utility</category>
+    <category>FileTools</category>
+    <category>FileManager</category>
+  </categories>
+
+  <url type="homepage">https://doublecmd.sourceforge.io/</url>
+  <url type="help">https://doublecmd.github.io/doc/en/index.html</url>
+  <url type="bugtracker">https://github.com/doublecmd/doublecmd/issues</url>
+   
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main Window</caption>
+        <image type="source">https://doublecmd.sourceforge.io/gallery/images/MainWindow.png</image>
+    </screenshot>
+  </screenshots>
+
+  <launchable type="desktop-id">org.doublecmd.Doublecmd.desktop</launchable>
+  <releases>
+    <release version="1.1.2" date="2023-09-09"/>
+  </releases>
+</component>
