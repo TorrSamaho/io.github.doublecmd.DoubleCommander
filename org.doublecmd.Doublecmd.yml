@@ -12,7 +12,6 @@ finish-args:
   - --socket=wayland
   - --filesystem=home
   - --filesystem=/run/media
-  - --nofilesystem=/proc/self/mounts
   - --device=dri
 modules:
   - name: qt5pas
