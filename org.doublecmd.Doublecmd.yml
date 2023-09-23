@@ -31,6 +31,9 @@ modules:
         commit: 1c46399683895f6e513aeca80145c96f3bdeba05
         # This is necessary for "git2revisioninc.cmd" to work, i.e., to determine "Revision" and "Commit".
         disable-shallow-clone: true
+      # A patch to hide unwanted mounts.
+      - type: patch
+        path: source.patch
       - type: file
         path: org.doublecmd.Doublecmd.metainfo.xml
     buildsystem: simple

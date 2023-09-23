@@ -1,0 +1,21 @@
+diff --git a/src/platform/udrivewatcher.pas b/src/platform/udrivewatcher.pas
+index f6c21c567..8a32c216d 100644
+--- a/src/platform/udrivewatcher.pas
++++ b/src/platform/udrivewatcher.pas
+@@ -721,6 +721,16 @@ end;
+          (StrBegins(mnt_dir, '/proc/')) or
+          (StrBegins(mnt_dir, '/snap/')) or
+          (StrPos(mnt_dir, '/snapd/') <> nil) or
++         // Some flatpak specifc additions
++         (mnt_dir = '/app') or
++         (mnt_dir = '/usr') or
++         (StrBegins(mnt_dir, '/app/')) or
++         (StrBegins(mnt_dir, '/etc/')) or
++         (StrBegins(mnt_dir, '/usr/')) or
++         (StrBegins(mnt_dir, '/var/')) or
++         (StrBegins(mnt_dir, '/run/host/')) or
++         ((StrBegins(mnt_dir, '/home/')) and (StrPos(mnt_dir, '/.config') <> nil)) or
++         (StrPos(mnt_dir, '/.var/app/org.doublecmd.Doublecmd') <> nil) or
+          (StrBegins(ExtractFileName(mnt_dir), '.')) then Exit;
+ 
+       // check file system type
