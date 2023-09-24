@@ -11,6 +11,7 @@ finish-args:
   - --socket=x11
   - --socket=wayland
   - --filesystem=home
+  - --filesystem=/media
   - --filesystem=/run/media
   - --device=dri
 modules:
