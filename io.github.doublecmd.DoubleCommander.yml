@@ -10,9 +10,7 @@ finish-args:
   - --share=network
   - --socket=x11
   - --socket=wayland
-  - --filesystem=home
-  - --filesystem=/media
-  - --filesystem=/run/media
+  - --filesystem=host
   - --device=dri
 modules:
   - name: qt5pas
