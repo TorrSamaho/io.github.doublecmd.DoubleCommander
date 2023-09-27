@@ -1,4 +1,4 @@
-app-id: org.doublecmd.Doublecmd
+app-id: io.github.doublecmd.DoubleCommander
 runtime: org.kde.Platform
 runtime-version: '5.15-22.08'
 sdk: org.kde.Sdk
@@ -36,7 +36,7 @@ modules:
       - type: patch
         path: source.patch
       - type: file
-        path: org.doublecmd.Doublecmd.metainfo.xml
+        path: io.github.doublecmd.DoubleCommander.metainfo.xml
     buildsystem: simple
     build-commands:
       # The install script needs to be patched, so that we don't install in "usr".

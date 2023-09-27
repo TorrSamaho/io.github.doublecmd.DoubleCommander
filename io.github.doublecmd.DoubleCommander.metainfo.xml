@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.doublecmd.Doublecmd</id>
+  <id>io.github.doublecmd.DoubleCommander</id>
   
   <name>Double Commander</name>
   <developer_name>Double Commander Team</developer_name>
@@ -32,7 +32,7 @@
     </screenshot>
   </screenshots>
 
-  <launchable type="desktop-id">org.doublecmd.Doublecmd.desktop</launchable>
+  <launchable type="desktop-id">io.github.doublecmd.DoubleCommander.desktop</launchable>
   <releases>
     <release version="1.1.2" date="2023-09-09"/>
   </releases>

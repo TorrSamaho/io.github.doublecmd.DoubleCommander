@@ -15,7 +15,7 @@ index f6c21c567..8a32c216d 100644
 +         (StrBegins(mnt_dir, '/var/')) or
 +         (StrBegins(mnt_dir, '/run/host/')) or
 +         ((StrBegins(mnt_dir, '/home/')) and (StrPos(mnt_dir, '/.config') <> nil)) or
-+         (StrPos(mnt_dir, '/.var/app/org.doublecmd.Doublecmd') <> nil) or
++         (StrPos(mnt_dir, '/.var/app/io.github.doublecmd.DoubleCommander') <> nil) or
           (StrBegins(ExtractFileName(mnt_dir), '.')) then Exit;
  
        // check file system type
