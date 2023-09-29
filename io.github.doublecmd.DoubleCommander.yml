@@ -27,13 +27,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/doublecmd/doublecmd.git
-        tag: v1.1.2
-        commit: 1c46399683895f6e513aeca80145c96f3bdeba05
+        commit: 5712b87023ef10efa7be7ec26402ad749c140499
         # This is necessary for "git2revisioninc.cmd" to work, i.e., to determine "Revision" and "Commit".
         disable-shallow-clone: true
-      # A patch to hide unwanted mounts.
-      - type: patch
-        path: source.patch
       - type: file
         path: io.github.doublecmd.DoubleCommander.metainfo.xml
     buildsystem: simple
