@@ -12,6 +12,7 @@ finish-args:
   - --socket=wayland
   - --filesystem=host
   - --device=dri
+  - --talk-name=org.freedesktop.Flatpak
 modules:
   - name: qt5pas
     buildsystem: qmake
