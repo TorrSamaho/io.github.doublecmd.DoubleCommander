@@ -27,7 +27,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/doublecmd/doublecmd.git
-        commit: dd9704a8a3a5c041b62791c3bb8647acfe59aad9
+        tag: v1.1.3
+        commit: 42dfbf544853d72db69527c31dd1cbe7b9e174ff
         # This is necessary for "git2revisioninc.cmd" to work, i.e., to determine "Revision" and "Commit".
         disable-shallow-clone: true
       - type: file
