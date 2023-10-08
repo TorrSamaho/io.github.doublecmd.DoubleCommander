@@ -11,6 +11,8 @@ finish-args:
   - --socket=x11
   - --socket=wayland
   - --filesystem=host
+  # Allow DC to see the configs of other flatpak apps
+  - --filesystem=~/.var/app
   - --device=dri
   - --talk-name=org.freedesktop.Flatpak
 modules:
