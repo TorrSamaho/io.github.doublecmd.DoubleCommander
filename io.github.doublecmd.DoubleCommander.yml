@@ -13,6 +13,8 @@ finish-args:
   - --filesystem=host
   # Allow DC to see the configs of other flatpak apps
   - --filesystem=~/.var/app
+  # For external archivers, e.g. 7za, to work, DC needs access to /tmp
+  - --filesystem=/tmp
   - --device=dri
   - --talk-name=org.freedesktop.Flatpak
 modules:
