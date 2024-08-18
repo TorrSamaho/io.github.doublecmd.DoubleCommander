@@ -8,7 +8,7 @@ command: doublecmd
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=x11
+  - --socket=fallback-x11
   - --socket=wayland
   - --filesystem=host
   # Allow DC to see the configs of other flatpak apps
