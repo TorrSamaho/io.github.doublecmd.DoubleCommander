@@ -27,6 +27,18 @@ modules:
       - type: shell
         commands:
           - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
+  # The unrar part was copied from https://github.com/flathub/org.sabnzbd.sabnzbd
+  - name: unrar
+    no-autogen: true
+    make-install-args:
+      - DESTDIR=$(FLATPAK_DEST)
+    sources:
+      - type: archive
+        url: https://www.rarlab.com/rar/unrarsrc-7.0.9.tar.gz
+        sha256: 505c13f9e4c54c01546f2e29b2fcc2d7fabc856a060b81e5cdfe6012a9198326
+      - type: patch
+        path: patches/0001-fix-buildflags.patch
+        sha256: ecd54158acaf7562585d465c8f613aa35130731acf270e4224fd9bd8f00e25b4
   - name: doublecmd
     sources:
       - type: git
