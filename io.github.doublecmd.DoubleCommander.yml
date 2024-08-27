@@ -27,6 +27,18 @@ modules:
       - type: shell
         commands:
           - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
+  # The p7zip part was copied from https://github.com/flathub/org.sabnzbd.sabnzbd and slightly adjusted.
+  - name: p7zip
+    no-autogen: true
+    make-args:
+      - 7za
+    sources:
+      - type: archive
+        url: https://github.com/p7zip-project/p7zip/archive/v17.05/p7zip-v17.05.tar.gz
+        sha256: d2788f892571058c08d27095c22154579dfefb807ebe357d145ab2ddddefb1a6
+      - type: shell
+        commands:
+          - sed -i 's|/usr/local|/app|g' makefile.common
   # The unrar part was copied from https://github.com/flathub/org.sabnzbd.sabnzbd
   - name: unrar
     no-autogen: true
