@@ -1,6 +1,6 @@
 app-id: io.github.doublecmd.DoubleCommander
 runtime: org.kde.Platform
-runtime-version: '5.15-23.08'
+runtime-version: '6.7'
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.freepascal
@@ -18,15 +18,14 @@ finish-args:
   - --device=dri
   - --talk-name=org.freedesktop.Flatpak
 modules:
-  - name: qt5pas
+  # The qt6pas part was copied from https://github.com/flathub/io.github.cudatext.CudaText-Qt and slightly adjusted.
+  - name: qt6pas
     buildsystem: qmake
-    config-opts:
-      - -after
-      - target.path=/app/lib
     sources:
       - type: shell
         commands:
-          - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt5/cbindings/. .
+          - cp -r /usr/lib/sdk/freepascal/share/lazarus/lcl/interfaces/qt6/cbindings/. .
+          - sed -e"s/target.path = .\+/target.path = '\/app\/lib'/" -i ./Qt6Pas.pro
   # The p7zip part was copied from https://github.com/flathub/org.sabnzbd.sabnzbd and slightly adjusted.
   - name: p7zip
     no-autogen: true
@@ -69,7 +68,7 @@ modules:
       - chmod +x install/linux/install-patched.sh
       - |
         . /usr/lib/sdk/freepascal/enable.sh
-        lcl=qt5 ./build.sh release
+        lcl=qt6 ./build.sh release
         install/linux/install-patched.sh --install-prefix ${FLATPAK_DEST}
     post-install:
       - install -Dm644 pixmaps/mainicon/alt/dcfinal.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
