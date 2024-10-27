@@ -1,6 +1,6 @@
 # Install prerequisites
 ```
-flatpak install --user flathub org.kde.Platform//5.15-23.08 org.kde.Sdk//5.15-23.08 flathub org.freedesktop.Sdk.Extension.freepascal//23.08 flathub org.flatpak.Builder
+flatpak install --user flathub org.kde.Platform//6.7 org.kde.Sdk//6.7 flathub org.freedesktop.Sdk.Extension.freepascal//23.08 flathub org.flatpak.Builder
 ```
 # Build and install (using the flatpak version of flatpak-builder)
 ```
