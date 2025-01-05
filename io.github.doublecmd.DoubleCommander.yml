@@ -10,6 +10,7 @@ finish-args:
   - --share=network
   - --socket=fallback-x11
   - --socket=wayland
+  - --socket=ssh-auth
   - --filesystem=host
   # Allow DC to see the configs of other flatpak apps
   - --filesystem=~/.var/app
@@ -50,6 +51,19 @@ modules:
       - type: patch
         path: patches/0001-fix-buildflags.patch
         sha256: ecd54158acaf7562585d465c8f613aa35130731acf270e4224fd9bd8f00e25b4
+  # The libssh2 part was copied from https://github.com/scx/uget-flatpak/blob/master/libssh2.yaml and adjusted.
+  - name: libssh2
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DBUILD_SHARED_LIBS:BOOL=ON
+    sources:
+      - type: archive
+        url: https://www.libssh2.org/download/libssh2-1.11.1.tar.gz
+        sha256: d9ec76cbe34db98eec3539fe2c899d26b0c837cb3eb466a56b0f109cabf658f7
+    post-install:
+      - install -p -D -m 0644 "../COPYING" -t "${FLATPAK_DEST}/share/licenses/libssh2/";
   - name: doublecmd
     sources:
       - type: git
