@@ -8,7 +8,8 @@ command: doublecmd
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=fallback-x11
+  - --socket=x11
+  # - --socket=fallback-x11
   - --socket=wayland
   - --socket=ssh-auth
   - --filesystem=host
@@ -65,8 +66,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/doublecmd/doublecmd.git
-        tag: v1.1.24
-        commit: 5b42d8637c8c17c2941040f466db50899fe257a6
+        tag: v1.1.25
+        commit: 624dbdb2438654b9f8e90c5a34357335c3a7b148
         # This is necessary for "git2revisioninc.cmd" to work, i.e., to determine "Revision" and "Commit".
         disable-shallow-clone: true
       - type: file
